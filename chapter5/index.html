@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>实现(联信)QA系统的可行性 - 基于seq2seq模型的自然语言处理应用</title>
+  
+
+  <link rel="shortcut icon" href="../icon.ico">
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "实现(联信)QA系统的可行性";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 基于seq2seq模型的自然语言处理应用</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">主页</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter1/">Seq2Seq2简介</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter2/">Encoder-Decoder结构</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter3/">seq2seq模型的python实现</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter4/">实现文本QA软件</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">实现(联信)QA系统的可行性</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#qa">实现(联信)QA系统的可行性</a></li>
+                
+                    <li><a class="toctree-l4" href="#1qa">1.如何改进文本QA软件</a></li>
+                
+                    <li><a class="toctree-l4" href="#2qaqa">2.基于文本QA软件，如何实现语音QA</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">关于</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">基于seq2seq模型的自然语言处理应用</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>实现(联信)QA系统的可行性</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/DataXujing/seq2seqlearn/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="qa">实现(联信)QA系统的可行性</h2>
+<pre><code>不但 可行 而且 可行！
+</code></pre>
+<h3 id="1qa">1.如何改进文本QA软件</h3>
+<p>如果想更贴近于业务场景（比如某业务领域知识的查询，知识问答，百度搜索，智能医生，催收），我们要做的就是修改训练集，使得底层调用的模型学习到该业务场景就好了，还有可能需要调整模型结构或参数。</p>
+<h3 id="2qaqa">2.基于文本QA软件，如何实现语音QA</h3>
+<p>我查了相关资料，团队完成语音识别和语音合成是有难度的，语音识别还可以，但是语音合成目前基本不可能完成。 我们要感谢一些牛B的，有逼格的互联网大公司，让我们做成QA系统成为可能。 </p>
+<p><strong>简单介绍一下语音识别</strong></p>
+<ul>
+<li>将人类语言转化为文本的技术</li>
+<li>智能机器人的必备技能</li>
+<li>机器学习的一种应用</li>
+<li>离线语音识别：sphinx，windows</li>
+<li>云语音识别：百度，科大讯飞，苹果，谷歌(墙外)</li>
+<li>在线语音识别的精度远高于离线语音识别</li>
+<li>百度，讯飞等提供的离线语音识别，实际上还是需要网络，需要与云服务器通讯的</li>
+</ul>
+<p><strong>离线语音识别</strong></p>
+<ul>
+<li>李开复，sphinx</li>
+<li>微软，win7系统内置的语音识别引擎，识别率低，经过重复训练后可提高</li>
+</ul>
+<p><strong>在线语音识别</strong></p>
+<ul>
+<li>
+<p>科大讯飞</p>
+<ul>
+<li>
+<p>识别率高，支持方言（超赞）</p>
+</li>
+<li>
+<p>每天500次免费调用，超过部分收费</p>
+</li>
+</ul>
+</li>
+<li>
+<p>百度语音</p>
+<ul>
+<li>识别率高，不支持方言(支持粤语）</li>
+<li>免费，无限次调用（业界良心）</li>
+<li>我已经测试，调用百度云语音的服务，完成初步的QA系统</li>
+</ul>
+</li>
+<li>
+<p>苹果</p>
+<ul>
+<li>因其独立的硬件和软件系统</li>
+<li>你们休想知道我是怎么做到的</li>
+</ul>
+</li>
+<li>
+<p>谷歌</p>
+<ul>
+<li>免费，但是你找不到我</li>
+</ul>
+</li>
+</ul>
+<p><strong>百度云语音</strong></p>
+<ul>
+<li>语音识别，语音合成</li>
+<li>免费使用</li>
+<li>可申请无限次调用API</li>
+<li>提供移动平台的SDK接入，对于PC平台，可使用REST API访问</li>
+<li>提供java，C++的访问demo(好像现在也有Python的访问Demo）</li>
+</ul>
+<p>使用比较简单：</p>
+<ul>
+<li>云端程序开发</li>
+<li>注册百度开发者</li>
+<li>建立应用</li>
+<li>提升应用权限</li>
+<li>记住token和key</li>
+<li><a href="http://yuyin.baidu.com/">http://yuyin.baidu.com/</a></li>
+</ul>
+<hr />
+<p>对于语音合成，我想我们还是放弃吧，直接拿第三方的开源云服务接口就够我们用了，你只要提供正确的文本，百度云语音就可以变换各种声线的给你提供准确的语音合成。</p>
+<hr />
+<p>基于百度语言识别及合成，我们就非常容易修改我们的小软件，做成语音QA系统，这里边需要特别的问题有：多线程并发识别合成，断点识别，语音降噪，云服务调用。</p>
+<hr />
+<p>难点： 语音识别的准确性，基于业务场景的文本QA系统的训练，不论怎么样，先做出来，慢慢调整。</p>
+<p>还有最重要的一点是，聊天机器人的前后文逻辑性基本是0，她只会很好的回答你当前的问题</p>
+<pre><code class="python">
+example:
+
+A: 你爸爸是谁？
+机器人： 我爸爸是XXX
+A: 我刚才问你爸爸是谁了没有？
+机器人：他不会结合上下文聊天语境来回答这个问题，他的语言逻辑推理能力基本为0
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../about/" class="btn btn-neutral float-right" title="关于"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../chapter4/" class="btn btn-neutral" title="实现文本QA软件"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../chapter4/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

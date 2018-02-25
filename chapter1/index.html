@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Seq2Seq2简介 - 基于seq2seq模型的自然语言处理应用</title>
+  
+
+  <link rel="shortcut icon" href="../icon.ico">
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Seq2Seq2简介";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 基于seq2seq模型的自然语言处理应用</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">主页</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Seq2Seq2简介</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#seq2seq">seq2seq介绍</a></li>
+                
+                    <li><a class="toctree-l4" href="#1">1.简单介绍</a></li>
+                
+                    <li><a class="toctree-l4" href="#2">2.模型的提出</a></li>
+                
+                    <li><a class="toctree-l4" href="#3">3.核心思想</a></li>
+                
+                    <li><a class="toctree-l4" href="#4">4.模型应用</a></li>
+                
+                    <li><a class="toctree-l4" href="#5paper">5.Paper</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter2/">Encoder-Decoder结构</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter3/">seq2seq模型的python实现</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter4/">实现文本QA软件</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../chapter5/">实现(联信)QA系统的可行性</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">关于</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">基于seq2seq模型的自然语言处理应用</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Seq2Seq2简介</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/DataXujing/seq2seqlearn/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="seq2seq">seq2seq介绍</h2>
+<h3 id="1">1.简单介绍</h3>
+<p>Seq2Seq技术，全称Sequence to Sequence，该技术突破了传统的固定大小输入问题框架，开通了将经典深度神经网络模型（DNNs）运用于在翻译，文本自动摘要和机器人自动问答以及一些回归预测任务上,并被证实在英语－法语翻译、英语－德语翻译以及人机短问快答的应用中有着不俗的表现。</p>
+<h3 id="2">2.模型的提出</h3>
+<p>提出：Seq2Seq被提出于2014年，最早由两篇文章独立地阐述了它主要思想，分别是Google Brain团队的《Sequence to Sequence Learning with Neural Networks》和Yoshua Bengio团队的《Learning Phrase Representation using RNN Encoder-Decoder for Statistical Machine Translation》。这两篇文章针对机器翻译的问题不谋而合地提出了相似的解决思路，Seq2Seq由此产生。</p>
+<h3 id="3">3.核心思想</h3>
+<p>Seq2Seq解决问题的主要思路是通过深度神经网络模型（常用的是LSTM，长短记忆网络，一种循环神经网络）<a href="http://dataxujing.coding.me/深度学习之RNN/">http://dataxujing.coding.me/深度学习之RNN/</a>。将一个作为输入的序列映射为一个作为输出的序列，这一过程由编码（Encoder）输入与解码（Decoder）输出两个环节组成, 前者负责把序列编码成一个固定长度的向量，这个向量作为输入传给后者，输出可变长度的向量。</p>
+<div align=center>
+<img src="../img/edpic.jpg" />
+</div>
+
+<p><strong>图1：Seq2Seq示意图</strong></p>
+<p>由上图所示，在这个模型中每一时间的输入和输出是不一样的，比如对于序列数据就是将序列项依次传入，每个序列项再对应不同的输出。比如说我们现在有序列“A B C EOS” （其中EOS＝End of Sentence，句末标识符）作为输入，那么我们的目的就是将“A”，“B”，“C”，“EOS”依次传入模型后，把其映射为序列“W X Y Z EOS”作为输出。</p>
+<h3 id="4">4.模型应用</h3>
+<p>seq2seq其实可以用在很多地方，比如机器翻译，自动对话机器人，文档摘要自动生成，图片描述自动生成。比如Google就基于seq2seq开发了一个对话模型[5]，和论文[1，2]的思路基本是一致的，使用两个LSTM的结构，LSTM1将输入的对话编码成一个固定长度的实数向量，LSTM2根据这个向量不停地预测后面的输出（解码）。只是在对话模型中，使用的语料是（（input）你说的话-我答的话（input））这种类型的pairs 。而在机器翻译中使用的语料是（hello-你好）这样的pairs。</p>
+<p>此外，如果我们的输入是图片，输出是对图片的描述，用这样的方式来训练的话就能够完成图片描述的任务。等等，等等。</p>
+<p>可以看出来，seq2seq具有非常广泛的应用场景，而且效果也是非常强大。同时，因为是端到端的模型（大部分的深度模型都是端到端的），它减少了很多人工处理和规则制定的步骤。在 Encoder-Decoder 的基础上，人们又引入了attention mechanism等技术，使得这些深度方法在各个任务上表现更加突出。</p>
+<h3 id="5paper">5.Paper</h3>
+<p>首先介绍几篇比较重要的 seq2seq 相关的论文： </p>
+<p>[1] <a href="https://arxiv.org/abs/1406.1078">Cho et al., 2014 . Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation.</a> </p>
+<p>[2] <a href="https://arxiv.org/abs/1409.3215">Sutskever et al., 2014. Sequence to Sequence Learning with Neural Networks.</a></p>
+<p>[3] <a href="https://arxiv.org/abs/1409.0473">Bahdanau et al., 2014. Neural Machine Translation by Jointly Learning to Align and Translate.</a> </p>
+<p>[4] <a href="https://arxiv.org/abs/1412.2007">Jean et. al., 2014. On Using Very Large Target Vocabulary for Neural Machine Translation.</a></p>
+<p>[5] <a href="https://arxiv.org/pdf/1506.05869v1.pdf">Vinyals et. al., 2015. A Neural Conversational Model. Computer Science.</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chapter2/" class="btn btn-neutral float-right" title="Encoder-Decoder结构"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="主页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../chapter2/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
