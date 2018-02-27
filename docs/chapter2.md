@@ -28,14 +28,14 @@
 
 
 <div align=center>
-<img src="../img/ed2.jpeg" />
+<img src="../img/ed2.png" />
 </div>
 **图4：经典的Encoder-Decoder示意图(LSTM or CNN）**
 
 上图为seq2seq的encode和decode结构，采用CNN/LSTM模型。在RNN中，当前时间的隐藏状态是由上一时间的状态和当前时间的输入x共同决定的，即
 
 <div align=center>
-<img src="../img/ed3.jpeg" />
+<img src="../img/ed3.png" />
 </div>
 
 + 【编码阶段】
@@ -43,13 +43,13 @@
 得到各个隐藏层的输出然后汇总，生成语义向量
 
 <div align=center>
-<img src="../img/ed4.jpeg" />
+<img src="../img/ed4.png" />
 </div>
 
 也可以将最后的一层隐藏层的输出作为语义向量C
 
 <div align=center>
-<img src="../img/ed5.jpeg" />
+<img src="../img/ed5.png" />
 </div>
 
 + 【解码阶段】
@@ -57,13 +57,13 @@
 这个阶段，我们要根据给定的语义向量C和输出序列y1,y2,…yt1来预测下一个输出的单词yt，即
 
 <div align=center>
-<img src="../img/ed6.jpeg" />
+<img src="../img/ed6.png" />
 </div>
 
 也可以写做
 
 <div align=center>
-<img src="../img/ed7.jpeg" />
+<img src="../img/ed7.png" />
 </div>
 
 其中g()代表的是非线性激活函数。在RNN中可写成yt=g(yt1,ht,C)，其中h为隐藏层的输出。
